@@ -1,0 +1,87 @@
+/* Admin Panel UI - visual-only enhancements */
+:root {
+  --admin-sidebar-width: 260px;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: var(--admin-sidebar-width) 1fr;
+  gap: 0;
+  min-height: calc(100vh - var(--site-header-height, 80px));
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: var(--site-header-height, 80px);
+  align-self: start;
+  height: calc(100vh - var(--site-header-height, 80px));
+  background: rgba(17, 24, 39, 0.96); /* slate-900 w/ opacity */
+  color: #fff;
+  padding: 20px 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) inset;
+}
+
+.admin-sidebar h2 {
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .8;
+  margin-bottom: 12px;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-nav a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #e5e7eb; /* gray-200 */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.admin-nav a:hover,
+.admin-nav a.active {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.admin-content {
+  padding: 24px 20px;
+}
+
+/* Content cards and tables */
+.admin-content .card,
+.admin-content .Card { /* fallback */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Zebra tables */
+.admin-content table tbody tr:nth-child(odd){
+  background: rgba(0,0,0,0.02);
+}
+.admin-content table thead th {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: saturate(180%) blur(4px);
+}
+
+/* Responsive: collapse sidebar */
+@media (max-width: 1024px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .admin-sidebar {
+    position: relative;
+    top: 0;
+    height: auto;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-right: none;
+  }
+}

@@ -1,0 +1,15 @@
+# Disable directory listing in /api
+Options -Indexes
+
+# Clean URLs: /api/foo -> /api/foo.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ $1.php [L]
+
+# CORS header (you can scope to your domain if desired)
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "https://traderchoice.asia"
+  Header set Access-Control-Allow-Credentials "true"
+  Header set Access-Control-Allow-Headers "Content-Type, X-Admin-Token"
+</IfModule>
